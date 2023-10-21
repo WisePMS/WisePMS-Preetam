@@ -4,7 +4,7 @@ import streamlit as st
 import pandas as pd
 
 # Read the CSV file using pandas
-data = pd.read_csv('outputs/saurabh2023.csv')
+data = pd.read_csv('https://github.com/Sid330s/WisePMS/releases/download/v1.0/my-stocks.csv')
 
 
 data['price_drop'] = (data['all_time_high_price'] - data['price_today']) * 100 / data['all_time_high_price']
