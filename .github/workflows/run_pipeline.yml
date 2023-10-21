@@ -1,0 +1,41 @@
+name: Daily CSV Generation
+
+on:
+  workflow_dispatch: # Allow manual triggering
+  schedule:
+    - cron: '0 18 * * *' # Schedule the workflow to run every day at 6 PM UTC (adjust the time zone as needed)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.9 # Specify the Python version you need
+
+    - name: Install Dependencies
+      run: pip install -r pipeline/requirements.txt # If you have a requirements.txt file
+
+    - name: Run Python Script
+      run: python pipeline/correction_algo.py
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          pipeline/output/generated.csv
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set Release Name
+      run: echo "::set-output name=release_name::My Release"
+
+    - name: Publish Release
+      run: |
+        echo "Release ID: ${{ steps.create_release.outputs.id }}"
+        echo "Release Name: ${{ steps.create_release.outputs.release_name }}"
