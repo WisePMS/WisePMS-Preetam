@@ -30,7 +30,7 @@ jobs:
       with:
         files: |
           pipeline/screens/my-stocks.csv
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.MY_TOKEN }}
         tag_name: v1.0
 
     - name: Set Release Name
