@@ -5,17 +5,18 @@ import os
 file_name = 'my-stocks.csv'
 file_path = f'pipeline/screens/{file_name}'
 output_path = f'pipeline/outputs/{file_name}'
+output_dir = 'pipeline/outputs'
 csv_tuples = []
 
 current_directory = os.getcwd()
 print("Current Working Directory:", current_directory)
 
 # Check if the directory exists, and create it if it doesn't
-if not os.path.exists(output_path):
-    os.makedirs(output_path)
-    print(f"Directory '{output_path}' created.")
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+    print(f"Directory '{output_dir}' created.")
 else:
-    print(f"Directory '{output_path}' already exists.")
+    print(f"Directory '{output_dir}' already exists.")
 
 
 try:
