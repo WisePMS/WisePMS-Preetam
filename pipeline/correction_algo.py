@@ -1,10 +1,22 @@
 from utils import *
 import pandas as pd
+import os
 
 file_name = 'my-stocks.csv'
 file_path = f'screens/{file_name}'
 output_path = f'outputs/{file_name}'
 csv_tuples = []
+
+current_directory = os.getcwd()
+print("Current Working Directory:", current_directory)
+
+# Check if the directory exists, and create it if it doesn't
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
+    print(f"Directory '{output_path}' created.")
+else:
+    print(f"Directory '{output_path}' already exists.")
+
 
 try:
     with open(file_path, 'r') as file:
