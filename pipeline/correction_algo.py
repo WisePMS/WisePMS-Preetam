@@ -3,8 +3,8 @@ import pandas as pd
 import os
 
 file_name = 'my-stocks.csv'
-file_path = f'screens/{file_name}'
-output_path = f'outputs/{file_name}'
+file_path = f'pipeline/screens/{file_name}'
+output_path = f'pipeline/outputs/{file_name}'
 csv_tuples = []
 
 current_directory = os.getcwd()
