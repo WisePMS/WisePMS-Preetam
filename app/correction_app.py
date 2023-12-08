@@ -8,10 +8,10 @@ data = pd.read_csv('https://github.com/Sid330s/WisePMS/releases/download/v1.0/my
 
 
 data['price_drop'] = (data['all_time_high_price'] - data['price_today']) * 100 / data['all_time_high_price']
-data['eps_increase'] = (data['eps_this_quarter'] - data['all_time_high_eps']) * 100 / data['all_time_high_eps']
+data['eps_decrease'] = (data['all_time_high_eps'] - data['eps_this_quarter']) * 100 / data['all_time_high_eps']
 
 
-data_sorted = data.sort_values(by=['price_drop', 'eps_increase'], ascending=[False, False])
+data_sorted = data.sort_values(by=['price_drop', 'eps_decrease'], ascending=[False, True])
 
 # Function to construct URL from name
 def construct_url_from_name(route):
@@ -30,7 +30,7 @@ def make_clickable(url):
 data_sorted['route'] = data_sorted['route'].apply(make_clickable)
 
 data_sorted['price_drop'] = data_sorted['price_drop'].round(2)
-data_sorted['eps_increase'] = data_sorted['eps_increase'].round(2)
+data_sorted['eps_decrease'] = data_sorted['eps_decrease'].round(2)
 
 data_sorted = data_sorted.reset_index()
 
